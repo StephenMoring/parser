@@ -22,7 +22,7 @@ public class Parser {
 		for(List<Enrollee> list : filesToWrite) {
 			writeToCSV(list, ++counter);
 		}
-		
+		System.out.println(".CSV files created");
 	}
 	
 	private static void readInitialCsv(){
@@ -49,17 +49,19 @@ public class Parser {
     		String folder = "src\\main\\resources\\";
 		
 		try{
-			File file = new File(enroleeList.get(0).getInsurance() + ".csv");
+			File file = new File(folder + "results" + count + ".csv");
 			FileWriter fr = new FileWriter(file, true);
 			for(int i = 0; i < enroleeList.size(); i++) {
+				
 				
 				if(file.length() == 0) {
 					fr.write("UserID,Name,Version,Insurance\r\n");
 				}
 				fr.write(enroleeList.get(i).getUserId() + "," + enroleeList.get(i).getName() + "," + enroleeList.get(i).getVersion() + "," + enroleeList.get(i).getInsurance() + "\r\n");
 				
+				
 			}
-			
+			fr.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
